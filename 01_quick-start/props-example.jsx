@@ -1,21 +1,23 @@
-// 子コンポーネント：受け取った name を表示
-function Greeting({ name = "ゲスト", mood }) {
-  return (
-    <p>
-      こんにちは、{name}さん。今日の気分は {mood ?? "ふつう"} ですね。
-    </p>
-  );
+function Greeting({ name = "ゲスト", mood = "ふつう" }) {
+  return <p>こんにちは、{name}さん。今日の気分は {mood} ですね。</p>;
 }
 
-// 親コンポーネント：子にデータ（props）を渡す
 export default function PropsExample() {
-  const userName = "さおり";
-  const todayMood = "ドキドキ！";
+  // ← ここが今回の主役（配列データ）
+  const users = [
+    { id: 1, name: "さおり", mood: "わくわく" },
+    { id: 2, name: "ゆうき", mood: "ねむい" },
+    { id: 3, name: "まこ",   mood: "元気"  },
+  ];
+
   return (
     <div>
-      <h2>Props Example</h2>
-      <Greeting name={userName} mood={todayMood} />
-      <Greeting mood="ねむい" /> {/* name を渡さないとデフォルト「ゲスト」 */}
+      <h2>Props: map で複数レンダー</h2>
+
+      {/* ここで map */}
+      {users.map((u) => (
+        <Greeting key={u.id} name={u.name} mood={u.mood} />
+      ))}
     </div>
   );
 }

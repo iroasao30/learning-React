@@ -1,4 +1,10 @@
 export default function Exercise() {
-  // 自分の練習用：あとで好きな表示に差し替える
-  return null;
+  const name = "さおり";
+  const today = new Date().toLocaleDateString();
+  return (
+    <div>
+      <h2>My First JSX👏</h2>
+      <p>こんにちは、{name}さん！今日は {today} です。</p>
+    </div>
+  );
 }
